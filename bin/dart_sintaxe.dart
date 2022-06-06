@@ -1,4 +1,6 @@
 void main(List<String> arguments) {
+  //versão do Dart -> 2.14.0
+
   Viajar jalapao = Viajar(locomocao: Transporte.carro);
   jalapao.aventura(); // codigo sem enum
   jalapao.aventura2(); // codigo com enum
@@ -35,9 +37,8 @@ void main(List<String> arguments) {
     'Chapada Diamantina': 'Cachoeiras',
     'São Paulo': 'Compras',
   };
-
   print(motivoMap);
-
+  //Map Contrutor
   Map<String, dynamic> precoMap = {
     'Jalapão': 2380.00,
     'Califórnia': 'MUITO CARO',
@@ -46,12 +47,43 @@ void main(List<String> arguments) {
     'São Paulo': 'Barato',
   };
   print(precoMap);
+
+// Variaveis Dynamic
+  var precoX = 1; // variavel do tipo num( int ou double)
+  print(precoX.runtimeType); // prova Real
+  // x = "frase"; -> vai brigar com a gente porque não podemos alterar a tipagem.
+
+  dynamic precoY; // não sabe o tipo
+  precoY = 1; // agora é um int
+  print(precoY.runtimeType);
+  precoY = 'frase'; // agora é uma String
+  print(precoY.runtimeType);
+
+  //Variáveis Static
+  jalapao.visitar();
+  jalapao.visitar();
+  jalapao.visitar();
+
+  //mas e se eu for pra outro lugar?
+  Viajar chapada = Viajar(locomocao: Transporte.bicicleta);
+  chapada.visitar();
+  chapada.visitar();
 }
 
 class Viajar {
   Transporte locomocao;
 
+  int visitas = 0;
+  static int viagens = 0;
+
   Viajar({required this.locomocao});
+
+  void visitar() {
+    visitas++;
+    viagens++;
+    print(
+        'Você visitou esse lugar $visitas vezes \n Você já fez um total de $viagens viagens \n');
+  } //Aula 3
 
   void aventura() {
     if (locomocao == 1) {
